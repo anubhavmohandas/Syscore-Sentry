@@ -73,13 +73,18 @@ def get_user_details():
     users = psutil.users()
     user_details = []
     for user in users:
-        user_details.append({
+        user_info = {
             "Username": user.name,
-            "Terminal": user.term,
             "Host": user.host,
             "Login Time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(user.started))
-        })
+        }
+        
+        # Check if 'term' is available in the user object, if not set it to 'N/A'
+        user_info["Terminal"] = getattr(user, 'term', 'N/A')  # 'N/A' if 'term' attribute doesn't exist
+        
+        user_details.append(user_info)
     return user_details
+
 
 # Function to gather all system information
 def gather_system_info():
