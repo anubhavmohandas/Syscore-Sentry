@@ -390,7 +390,7 @@ class SystemMonitor:
         cpu_info = self.system_info["cpu_info"]
         cpu_table = []
         for key, value in cpu_info.items():
-            if key != "cpu_percent_per_core":  # Handle this separately
+            if key != "cpu_percent_per_core":
                 cpu_table.append([key, value])
         print(tabulate(cpu_table, headers=["Property", "Value"], tablefmt="grid"))
         
