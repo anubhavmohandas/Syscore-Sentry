@@ -1,0 +1,39 @@
+Network Details:
+Command to fetch the Network detail is ifconfig (For Linux).
+For Windows:
+# Save network details into a file
+Get-NetIPAddress | Out-File -Append "C:\system_health.txt"
+
+System Details
+Fetch the system Details using df -h (Linux)
+# Save file system details into a file (Windows)
+Get-WmiObject Win32_LogicalDisk | Select-Object DeviceID, MediaType, Size, FreeSpace | Out-File
+-Append "C:\system_health.txt"
+
+Process Details
+Command (Linux) : - df -h
+Windows:
+# Save process details into a file
+Get-Process | Out-File -Append "C:\process_details.txt"
+
+Application Details
+Command (Linux): dpkg --list (Debian-based) or rpm -qa (Red Hat-based)
+(Windows): Get-WmiObject -Class Win32_Product | Select-Object Name, Version | Out-File -Append
+"C:\system_health.txt"
+
+Memory Details
+Command (Linux): free -h
+Command (Windows): Get-WmiObject -Class Win32_OperatingSystem | Select-Object
+TotalVisibleMemorySize, FreePhysicalMemory | Out-File -Append "C:\memory_details.txt"
+
+User Details
+Command (Linux): who or w
+Command (Windows): query user >> "C:\user_details.txt"
+
+Conclusion:
+● Network Details: Use ifconfig or ipconfig to gather network-related information.
+● File System Details: Use df or wmic logicaldisk to check disk space and usage.
+● Process Details: Use ps aux or tasklist to list all running processes.
+● Application Details: Use package management commands like dpkg or rpm (Linux) or Get-WmiObject for installed applications (Windows).
+● Memory Details: Use free or wmic to check memory usage and health.
+● User Details: Use who (Linux) or query user (Windows) to check logged-in users.
